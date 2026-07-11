@@ -34,7 +34,7 @@ Import Brl.Pixmap
 Import Brl.RamStream
 Import Brl.Retro
 Import Brl.Map
-
+Import Collections.Ptrmap
 Import "source.bmx"
 
 ' DirectDrawSurface varid
