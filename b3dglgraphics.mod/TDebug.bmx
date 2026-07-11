@@ -42,13 +42,13 @@ Type TDebug
 			
 		Next
 		
-		Text 0,120,"Entities: "+String(no_ents)
-		Text 0,140,"Cameras: "+String(no_cams)
-		Text 0,160,"Lights: "+String(no_lights)
-		Text 0,180,"Pivots: "+String(no_pivs)
-		Text 0,200,"Meshes: "+String(no_meshes)
-		Text 0,220,"Sprites: "+String(no_sprites)
-		Text 0,240,"Bones: "+String(no_bones)
+		B3DText 0,120,"Entities: "+String(no_ents)
+		B3DText 0,140,"Cameras: "+String(no_cams)
+		B3DText 0,160,"Lights: "+String(no_lights)
+		B3DText 0,180,"Pivots: "+String(no_pivs)
+		B3DText 0,200,"Meshes: "+String(no_meshes)
+		B3DText 0,220,"Sprites: "+String(no_sprites)
+		B3DText 0,240,"Bones: "+String(no_bones)
 		
 	End Function
 	
@@ -98,7 +98,7 @@ Type TDebug
 			If KeyHit(KEY_NUM4) Then info=4
 			If KeyHit(KEY_NUM5) Then info=5
 			
-			Text 0,0,"Entity: "+String(cno)+"/"+no_childs+". Name: "+cent.EntityName()+". Class: "+cent.EntityClass()
+			B3DText 0,0,"Entity: "+String(cno)+"/"+no_childs+". Name: "+cent.EntityName()+". Class: "+cent.EntityClass()
 			
 			If info=1 Then EntityInfo1(cent)
 			If info=2 Then EntityInfo2(cent,surf)
@@ -232,7 +232,7 @@ Type TDebug
 		
 		cam.CameraProject(x,y,z)
 		
-		Text Int(ProjectedX()),Int(ProjectedY()),"X"
+		B3DText Int(ProjectedX()),Int(ProjectedY()),"X"
 		
 		' entity centre marker
 		TEntity.TFormPoint(ent.EntityX(True),ent.EntityY(True),ent.EntityZ(True),ent,Null)
@@ -242,68 +242,68 @@ Type TDebug
 		
 		cam.CameraProject(x,y,z)
 		
-		Text Int(ProjectedX()),Int(ProjectedY()),"O"
+		B3DText Int(ProjectedX()),Int(ProjectedY()),"O"
 		
 	End Function
 	
 	Function EntityInfo1(ent:TEntity) ' entity info
 	
-		'Text 0,100, "Hidden: "+ent.hidden+" Parent Hidden: "+ent.parent_hidden
+		'B3DText 0,100, "Hidden: "+ent.hidden+" Parent Hidden: "+ent.parent_hidden
 		
-		Text 0,40,"1. Entity Position Info"
-		Text 0,80,"Global:"
+		B3DText 0,40,"1. Entity Position Info"
+		B3DText 0,80,"Global:"
 		
 		Local xx#=0
 		
 		xx=ent.EntityX(True)
 		If xx<0.0001 And xx>-0.0001 Then xx=0
-		Text 0,100,"X: "+String(xx)
+		B3DText 0,100,"X: "+String(xx)
 		
 		xx=ent.EntityY(True)
 		If xx<0.0001 And xx>-0.0001  Then xx=0
-		Text 0,120,"Y: "+String(xx)
+		B3DText 0,120,"Y: "+String(xx)
 		
 		xx=ent.EntityZ(True)
 		If xx<0.0001 And xx>-0.0001  Then xx=0
-		Text 0,140,"Z: "+String(xx)
+		B3DText 0,140,"Z: "+String(xx)
 		
 		xx=ent.EntityPitch(True)
 		If xx<0.0001 And xx>-0.0001  Then xx=0
-		Text 0,160,"Pitch: "+String(xx)
+		B3DText 0,160,"Pitch: "+String(xx)
 		
 		xx=ent.EntityYaw(True)
 		If xx<0.0001 And xx>-0.0001  Then xx=0
-		Text 0,180,"Yaw: "+String(xx)
+		B3DText 0,180,"Yaw: "+String(xx)
 		
 		xx=ent.EntityRoll(True)
 		If xx<0.0001 And xx>-0.0001  Then xx=0
-		Text 0,200,"Roll: "+String(xx)
+		B3DText 0,200,"Roll: "+String(xx)
 		
-		Text 0,240,"Local:"
+		B3DText 0,240,"Local:"
 		
 		xx=ent.EntityX(False)
 		If xx<0.0001 And xx>-0.0001  Then xx=0
-		Text 0,260,"X: "+String(xx)
+		B3DText 0,260,"X: "+String(xx)
 		
 		xx=ent.EntityY(False)
 		If xx<0.0001 And xx>-0.0001  Then xx=0
-		Text 0,280,"Y: "+String(xx)
+		B3DText 0,280,"Y: "+String(xx)
 		
 		xx=ent.EntityZ(False)
 		If xx<0.0001 And xx>-0.0001  Then xx=0
-		Text 0,300,"Z: "+String(xx)
+		B3DText 0,300,"Z: "+String(xx)
 		
 		xx=ent.EntityPitch(False)
 		If xx<0.0001 And xx>-0.0001  Then xx=0
-		Text 0,320,"Pitch: "+String(xx)
+		B3DText 0,320,"Pitch: "+String(xx)
 		
 		xx=ent.EntityYaw(False)
 		If xx<0.0001 And xx>-0.0001  Then xx=0
-		Text 0,340,"Yaw: "+String(xx)
+		B3DText 0,340,"Yaw: "+String(xx)
 		
 		xx=ent.EntityRoll(False)
 		If xx<0.0001 And xx>-0.0001  Then xx=0
-		Text 0,360,"Roll: "+String(xx)
+		B3DText 0,360,"Roll: "+String(xx)
 		
 		Local tx:Int=0
 		Local ty:Int=380
@@ -313,7 +313,7 @@ Type TDebug
 			For Local ix:Int=0 To 3
 				xx=ent.mat.grid[(4*ix)+iy] ' [ix,iy]
 				If xx<0.0001 And xx>-0.0001 Then xx=0
-				Text tx,ty,String(xx)
+				B3DText tx,ty,String(xx)
 				tx=tx+100
 			Next
 		Next
@@ -324,26 +324,26 @@ Type TDebug
 	
 		If TMesh(ent)<>Null
 		
-			Text 0,40,"2. Surface Info"
+			B3DText 0,40,"2. Surface Info"
 			
 			If TSurface(surf)<>Null
 			
-				Text 0,80,"Surface "+surf_no+"/"+TMesh(ent).CountSurfaces()
-				Text 0,100,"Vertices: "+surf.CountVertices()+"/"+TMesh(ent).CountVertices()
-				Text 0,120,"Triangles: "+surf.CountTriangles()+"/"+TMesh(ent).CountTriangles()
-				Text 0,160,"Alpha Enabled: "+surf.alpha_enable[0] ' alpha_enable
-				Text 0,200,"Surf Vmin: "+surf.vmin[0] ' vmin
-				Text 0,220,"Surf Vmax: "+surf.vmax[0] ' vmax
+				B3DText 0,80,"Surface "+surf_no+"/"+TMesh(ent).CountSurfaces()
+				B3DText 0,100,"Vertices: "+surf.CountVertices()+"/"+TMesh(ent).CountVertices()
+				B3DText 0,120,"Triangles: "+surf.CountTriangles()+"/"+TMesh(ent).CountTriangles()
+				B3DText 0,160,"Alpha Enabled: "+surf.alpha_enable[0] ' alpha_enable
+				B3DText 0,200,"Surf Vmin: "+surf.vmin[0] ' vmin
+				B3DText 0,220,"Surf Vmax: "+surf.vmax[0] ' vmax
 				
 			Else
 			
-				Text 0,80,"No surface"
+				B3DText 0,80,"No surface"
 				
 			EndIf
 			
 		Else
 		
-			Text 0,80, "Entity is not a mesh!"
+			B3DText 0,80, "Entity is not a mesh!"
 			
 		EndIf
 		
@@ -351,91 +351,91 @@ Type TDebug
 	
 	Function EntityInfo3(ent:TEntity,surf:TSurface) ' brush info
 	
-		Text 0,40,"3. Brush Info"
+		B3DText 0,40,"3. Brush Info"
 		
 		If surf<>Null
 		
-			Text 0,80,"Surface "+surf_no+"/"+TMesh(ent).CountSurfaces()+" Brush:"
+			B3DText 0,80,"Surface "+surf_no+"/"+TMesh(ent).CountSurfaces()+" Brush:"
 			
 			If surf.brush<>Null
 			
-				Text 0,100,"Name: "+String.FromCString(surf.brush.name) ' name
-				Text 0,120,"Red: "+surf.brush.red[0] ' red
-				Text 0,140,"Green: "+surf.brush.green[0] ' green
-				Text 0,160,"Blue: "+surf.brush.blue[0] ' blue
-				Text 0,180,"Alpha: "+surf.brush.alpha[0] ' alpha
-				Text 0,200,"Blend: "+surf.brush.blend[0] ' blend
-				Text 0,220,"FX: "+surf.brush.fx[0] ' fx
+				B3DText 0,100,"Name: "+String.FromCString(surf.brush.name) ' name
+				B3DText 0,120,"Red: "+surf.brush.red[0] ' red
+				B3DText 0,140,"Green: "+surf.brush.green[0] ' green
+				B3DText 0,160,"Blue: "+surf.brush.blue[0] ' blue
+				B3DText 0,180,"Alpha: "+surf.brush.alpha[0] ' alpha
+				B3DText 0,200,"Blend: "+surf.brush.blend[0] ' blend
+				B3DText 0,220,"FX: "+surf.brush.fx[0] ' fx
 				
 				If surf.brush.tex[0]<>Null
-					Text 0,240,"Tex0 Name: "+String.FromCString(surf.brush.tex[0].file) ' file
-					Text 0,260,"Tex0 Flags: "+surf.brush.tex[0].flags[0] ' flags
-					Text 0,280,"Tex0 Blend: "+surf.brush.tex[0].blend[0] ' blend
+					B3DText 0,240,"Tex0 Name: "+String.FromCString(surf.brush.tex[0].file) ' file
+					B3DText 0,260,"Tex0 Flags: "+surf.brush.tex[0].flags[0] ' flags
+					B3DText 0,280,"Tex0 Blend: "+surf.brush.tex[0].blend[0] ' blend
 				EndIf
 				If surf.brush.tex[1]<>Null
-					Text 0,300,"Tex1 Name: "+String.FromCString(surf.brush.tex[1].file)
-					Text 0,320,"Tex1 Flags: "+surf.brush.tex[1].flags[0]
-					Text 0,340,"Tex1 Blend: "+surf.brush.tex[1].blend[0]
+					B3DText 0,300,"Tex1 Name: "+String.FromCString(surf.brush.tex[1].file)
+					B3DText 0,320,"Tex1 Flags: "+surf.brush.tex[1].flags[0]
+					B3DText 0,340,"Tex1 Blend: "+surf.brush.tex[1].blend[0]
 				EndIf
 				If surf.brush.tex[2]<>Null
-					Text 0,360,"Tex2 Name: "+String.FromCString(surf.brush.tex[2].file)
-					Text 0,380,"Tex2 Flags: "+surf.brush.tex[2].flags[0]
-					Text 0,400,"Tex2 Blend: "+surf.brush.tex[2].blend[0]
+					B3DText 0,360,"Tex2 Name: "+String.FromCString(surf.brush.tex[2].file)
+					B3DText 0,380,"Tex2 Flags: "+surf.brush.tex[2].flags[0]
+					B3DText 0,400,"Tex2 Blend: "+surf.brush.tex[2].blend[0]
 				EndIf
 				If surf.brush.tex[3]<>Null
-					Text 0,420,"Tex3 Name: "+String.FromCString(surf.brush.tex[3].file)
-					Text 0,440,"Tex3 Flags: "+surf.brush.tex[3].flags[0]
-					Text 0,460,"Tex3 Blend: "+surf.brush.tex[3].blend[0]
+					B3DText 0,420,"Tex3 Name: "+String.FromCString(surf.brush.tex[3].file)
+					B3DText 0,440,"Tex3 Flags: "+surf.brush.tex[3].flags[0]
+					B3DText 0,460,"Tex3 Blend: "+surf.brush.tex[3].blend[0]
 				EndIf
 				
 			Else
 			
-				Text 0,100,"No brush"
+				B3DText 0,100,"No brush"
 				
 			EndIf
 			
 		Else
 		
-			Text 0,100,"No surface"
+			B3DText 0,100,"No surface"
 			
 		EndIf
 		
-		Text 200,80,"Entity Brush:"
+		B3DText 200,80,"Entity Brush:"
 		
 		If ent.brush<>Null
 		
-			Text 200,100,"Name: "+String.FromCString(ent.brush.name)
-			Text 200,120,"Red: "+ent.brush.red[0]
-			Text 200,140,"Green: "+ent.brush.green[0]
-			Text 200,160,"Blue: "+ent.brush.blue[0]
-			Text 200,180,"Alpha: "+ent.brush.alpha[0]
-			Text 200,200,"Blend: "+ent.brush.blend[0]
-			Text 200,220,"FX: "+ent.brush.fx[0]
+			B3DText 200,100,"Name: "+String.FromCString(ent.brush.name)
+			B3DText 200,120,"Red: "+ent.brush.red[0]
+			B3DText 200,140,"Green: "+ent.brush.green[0]
+			B3DText 200,160,"Blue: "+ent.brush.blue[0]
+			B3DText 200,180,"Alpha: "+ent.brush.alpha[0]
+			B3DText 200,200,"Blend: "+ent.brush.blend[0]
+			B3DText 200,220,"FX: "+ent.brush.fx[0]
 			
 			If ent.brush.tex[0]<>Null
-				Text 200,240,"Tex0 Name: "+String.FromCString(ent.brush.tex[0].file)
-				Text 200,160,"Tex0 Flags: "+ent.brush.tex[0].flags[0]
-				Text 200,280,"Tex0 Blend: "+ent.brush.tex[0].blend[0]
+				B3DText 200,240,"Tex0 Name: "+String.FromCString(ent.brush.tex[0].file)
+				B3DText 200,160,"Tex0 Flags: "+ent.brush.tex[0].flags[0]
+				B3DText 200,280,"Tex0 Blend: "+ent.brush.tex[0].blend[0]
 			EndIf
 			If ent.brush.tex[1]<>Null
-				Text 200,300,"Tex1 Name: "+String.FromCString(ent.brush.tex[1].file)
-				Text 200,320,"Tex1 Flags: "+ent.brush.tex[1].flags[0]
-				Text 200,340,"Tex1 Blend: "+ent.brush.tex[1].blend[0]
+				B3DText 200,300,"Tex1 Name: "+String.FromCString(ent.brush.tex[1].file)
+				B3DText 200,320,"Tex1 Flags: "+ent.brush.tex[1].flags[0]
+				B3DText 200,340,"Tex1 Blend: "+ent.brush.tex[1].blend[0]
 			EndIf
 			If ent.brush.tex[2]<>Null
-				Text 200,360,"Tex2 Name: "+String.FromCString(ent.brush.tex[2].file)
-				Text 200,380,"Tex2 Flags: "+ent.brush.tex[2].flags[0]
-				Text 200,400,"Tex2 Blend: "+ent.brush.tex[2].blend[0]
+				B3DText 200,360,"Tex2 Name: "+String.FromCString(ent.brush.tex[2].file)
+				B3DText 200,380,"Tex2 Flags: "+ent.brush.tex[2].flags[0]
+				B3DText 200,400,"Tex2 Blend: "+ent.brush.tex[2].blend[0]
 			EndIf
 			If ent.brush.tex[3]<>Null
-				Text 200,420,"Tex3 Name: "+String.FromCString(ent.brush.tex[3].file)
-				Text 200,440,"Tex3 Flags: "+ent.brush.tex[3].flags[0]
-				Text 200,460,"Tex3 Blend: "+ent.brush.tex[3].blend[0]
+				B3DText 200,420,"Tex3 Name: "+String.FromCString(ent.brush.tex[3].file)
+				B3DText 200,440,"Tex3 Flags: "+ent.brush.tex[3].flags[0]
+				B3DText 200,460,"Tex3 Blend: "+ent.brush.tex[3].blend[0]
 			EndIf
 			
 		Else
 		
-			Text 0,100,"No brush"
+			B3DText 0,100,"No brush"
 			
 		EndIf
 		
@@ -443,15 +443,15 @@ Type TDebug
 	
 	Function EntityInfo4(ent:TEntity,cam:TCamera) ' cam info
 	
-		Text 0,40,"3. Camera Info"
+		B3DText 0,40,"3. Camera Info"
 		
 		If cam<>Null
 		
-			Text 0,80,"EntityInView: "+String(cam.EntityInView(ent))
+			B3DText 0,80,"EntityInView: "+String(cam.EntityInView(ent))
 			
 		Else
 		
-			Text 0,80, "Camera entity not specified!"
+			B3DText 0,80, "Camera entity not specified!"
 			
 		EndIf
 		
