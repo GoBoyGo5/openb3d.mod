@@ -138,7 +138,7 @@ Prints a string at the designated screen coordinates. You can center the  text o
 Note: Printing a space with text will NOT render a block - a space is an empty  value. So printing " " will not make a box appear.
 
 End Rem
-Function Text( x:Int,y:Int,txt:String )
+Function B3DText( x:Int,y:Int,txt:String )
 	
 	' set active texture to texture 0 so gldrawtext will work correctly
 	glActiveTexture(GL_TEXTURE0)
